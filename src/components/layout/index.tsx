@@ -1,9 +1,12 @@
+import { ReactNode } from 'react';
 import { Menu } from './menu' //quando referencia dessa forma sempre pega o index
-
+import { Message } from 'components'
+import {Alert} from 'components/common/message/index'
 
 interface LayoutProps {
     titulo?: string, 
-    children?: string;
+    children?: ReactNode;
+    mensagens?: Array<Alert>;
 }
 
 export const Layout: React.FC<LayoutProps> = (props: LayoutProps) => {
@@ -21,6 +24,10 @@ export const Layout: React.FC<LayoutProps> = (props: LayoutProps) => {
                                 </p>
                             </div>
                             <div className="card-content">
+                                {props.mensagens &&
+                                    props.mensagens.map( msg => <Message key={msg.texto} { ...msg } />) //chave unica
+                                }
+                                <Message tipo ='' texto='' field=''/>
                                {props.children}
                             </div>
                         </div>

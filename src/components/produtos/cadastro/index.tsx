@@ -12,8 +12,8 @@ const msgCampoObrigatorio = "Campo Obrigatório"
 const validationSchema = yup.object().shape({
     sku: yup.string().trim().required(msgCampoObrigatorio), //Fica obrigatorio // o trim tira espacos vazios
     nome: yup.string().trim().required(msgCampoObrigatorio),
-    descricao: yup.string().trim().required(msgCampoObrigatorio).length(10, "Deve possuir pelo menos 10 caracteres"), //Validacoes
-    preco: yup.number().required(msgCampoObrigatorio)
+    descricao: yup.string().trim().required(msgCampoObrigatorio), //Validacoes
+    preco: yup.number().required(msgCampoObrigatorio).moreThan(0, "Valor deve ser maior que 0,00 (Zero)")
 })
 
 export const CadastroProdutos: React.FC = () => {
